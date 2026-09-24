@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazag Schools Limited - Inventory Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-container" class="card">
+        <h2>Fazag Schools Limited</h2>
+        <h3>Inventory Portal Login</h3>
+        <div id="login-error" class="error-msg hidden">Invalid username or password!</div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+    <!-- Main Dashboard (Hidden initially) -->
+    <div id="main-dashboard" class="hidden">
+        <header>
+            <div class="header-title">
+                <h1>Fazag Schools Limited</h1>
+                <p>Inventory & Stock Management System</p>
+            </div>
+            <div class="user-profile">
+                <span id="user-display-name">Welcome, Admin</span> (<span id="user-role-display">Admin</span>)
+                <button id="logout-btn" class="btn btn-danger btn-sm">Logout</button>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-target="inventory-section">Inventory & Logs</button>
+            <button class="tab-btn" id="product-tab-btn" data-target="product-section">Manage Products</button>
+            <button class="tab-btn admin-only" id="staff-tab-btn" data-target="staff-section">Manage Staff</button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- INVENTORY SECTION -->
+            <section id="inventory-section" class="tab-content active">
+                <div class="grid-2">
+                    <!-- Entry Form Card -->
+                    <div class="card">
+                        <h3 id="form-title">Record Transaction</h3>
+                        <form id="transaction-form">
+                            <input type="hidden" id="entry-id">
+                            
+                            <div class="form-group">
+                                <label for="tx-date">Date</label>
+                                <input type="date" id="tx-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tx-party">Supplier / Customer Name</label>
+                                <input type="text" id="tx-party" required placeholder="e.g. Alao & Sons">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tx-inv">Inv No.</label>
+                                <input type="text" id="tx-inv" required placeholder="e.g. INV-001">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tx-product">Select Product</label>
+                                <select id="tx-product" required>
+                                    <option value="">-- Choose Product --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tx-desc">Description</label>
+                                <input type="text" id="tx-desc" required placeholder="e.g. Batch B allocation">
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label for="tx-qty">Qty</label>
+                                    <input type="number" id="tx-qty" min="1" required placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tx-price">Price (₦)</label>
+                                    <input type="number" id="tx-price" min="0" step="0.01" required placeholder="0.00">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tx-amount">Amount (₦)</label>
+                                <input type="text" id="tx-amount" readonly placeholder="0.00" class="bg-disabled">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tx-type">Transaction Type</label>
+                                <select id="tx-type" required>
+                                    <option value="add">Receive Stock (add)</option>
+                                    <option value="reduce">Dispense Stock (reduce)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" id="submit-tx-btn" class="btn btn-success">Save Entry</button>
+                                <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Filters and Summary View -->
+                    <div class="cardflex">
+                        <div class="card filters-card">
+                            <h3>Filters</h3>
+                            <div class="grid-3">
+                                <div class="form-group">
+                                    <label for="filter-product">By Product</label>
+                                    <select id="filter-product">
+                                        <option value="">All Products</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="filter-supplier">By Supplier/Customer</label>
+                                    <input type="text" id="filter-supplier" placeholder="Search name...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="filter-month">By Month</label>
+                                    <input type="month" id="filter-month">
+                                </div>
+                            </div>
+                            <div class="filter-actions">
+                                <button id="clear-filters-btn" class="btn btn-secondary btn-sm">Clear Filters</button>
+                                <button id="export-excel-btn" class="btn btn-primary btn-sm">Export to Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transaction Table -->
+                <div class="card margin-top">
+                    <h3>Transaction Ledger & Audit Trail</h3>
+                    <div class="table-responsive">
+                        <table id="ledger-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Operator (Log)</th>
+                                    <th>Timestamp</th>
+                                    <th>Supplier/Customer</th>
+                                    <th>Inv No.</th>
+                                    <th>Product</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Qty</th>
+                                    <th>Price (₦)</th>
+                                    <th>Amount (₦)</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ledger-body">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="8">Total Net Balance:</td>
+                                    <td id="total-qty">0</td>
+                                    <td>-</td>
+                                    <td id="total-amount">₦0.00</td>
+                                    <td class="actions-col"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRODUCT MANAGEMENT SECTION -->
+            <section id="product-section" class="tab-content">
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 id="product-form-title">Add New Product</h3>
+                        <form id="product-form">
+                            <input type="hidden" id="product-id">
+                            <div class="form-group">
+                                <label for="prod-name">Product Name</label>
+                                <input type="text" id="prod-name" required placeholder="e.g. Premium Motor Spirit (PMS)">
+                            </div>
+                            <div class="form-group">
+                                <label for="prod-sku">SKU / Code</label>
+                                <input type="text" id="prod-sku" required placeholder="e.g. PMS-01">
+                            </div>
+                            <button type="submit" id="submit-prod-btn" class="btn btn-primary">Add Product</button>
+                            <button type="button" id="cancel-prod-edit" class="btn btn-secondary hidden">Cancel</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>Registered Products</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Product Name</th>
+                                        <th class="actions-col-prod">Actions</th>
+                                    </tr>
+                                </thead>
+                                id="product-list-body"
+                                <tbody id="product-list-body">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STAFF MANAGEMENT SECTION (ADMIN ONLY) -->
+            <section id="staff-section" class="tab-content admin-only">
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Add Staff Account</h3>
+                        <form id="staff-form">
+                            <div class="form-group">
+                                <label for="staff-username">Staff Username</label>
+                                <input type="text" id="staff-username" required placeholder="e.g. john_doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="staff-password">Password</label>
+                                <input type="password" id="staff-password" required placeholder="Enter password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>Active Staff Registry</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Staff Username</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="staff-list-body">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
