@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fazag Techs Ltd</title>
+   <link rel="icon" href="images/favicon.png">
+<style>
+:root{--bg:#fff;--ink:#1b1740;--mut:#5b5880;--card:#fff;--line:#e8e4ff;--a:#6c2bff;--b:#00c2ff;--c:#ff3d9a;--d:#ffb800;--g:linear-gradient(120deg,#6c2bff,#00c2ff 55%,#00e0a4);--g2:linear-gradient(120deg,#ff3d9a,#ffb800);--soft:#f4f1ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#110e2b;--ink:#f3f0ff;--mut:#b4b0d8;--card:#1c1845;--line:#322d6b;--soft:#1a1640}}
+:root[data-theme="dark"]{--bg:#110e2b;--ink:#f3f0ff;--mut:#b4b0d8;--card:#1c1845;--line:#322d6b;--soft:#1a1640}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:30}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:900}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800}
+p{margin:0 0 1em;color:var(--mut)}
+.grad{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:3px solid transparent;border-image:var(--g) 1;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;gap:1rem}
+.logo{font-weight:900;font-size:1.35rem;text-decoration:none;color:var(--ink)}
+.logo span{background:var(--g);color:#fff;padding:.1rem .45rem;border-radius:8px;margin-right:.3rem}
+nav{display:flex;gap:.2rem;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;padding:.45rem .8rem;border-radius:99px;transition:.2s}
+nav a:hover{background:var(--soft)}
+nav a.on{background:var(--g);color:#fff}
+#menu{display:none;background:var(--g);border:0;color:#fff;font-size:1.4rem;border-radius:10px;padding:.2rem .7rem;cursor:pointer}
+@media(max-width:900px){#menu{display:block}nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);flex-direction:column;padding:.6rem 1rem 1rem;box-shadow:0 12px 24px #0003}nav.open{display:flex}nav a{padding:.8rem 1rem}}
+main{min-height:70vh}
+section.page{display:none;animation:in .5s}
+section.page.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap{max-width:1100px;margin:auto;padding:2.5rem 1rem}
+.hero{background:var(--g);color:#fff;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(10px);animation:float 8s ease-in-out infinite}
+.hero::before{width:260px;height:260px;background:#ff3d9a88;top:-80px;right:-60px}
+.hero::after{width:200px;height:200px;background:#ffb80088;bottom:-70px;left:10%;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(30px) scale(1.1)}}
+.hero .wrap{position:relative;z-index:1;padding:3.5rem 1rem}
+.hero p{color:#fff;font-size:1.15rem;max-width:620px}
+.btn{display:inline-block;padding:.8rem 1.5rem;border-radius:99px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:1rem;background:var(--g2);color:#1b1740;transition:.2s;margin:.3rem .4rem .3rem 0}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 8px 20px #0003}
+.btn.alt{background:#fff;color:var(--a)}
+.slider{overflow:hidden;padding:1.2rem 0;background:var(--soft)}
+.track{display:flex;gap:1rem;width:max-content;animation:slide 32s linear infinite}
+.slider:hover .track{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ph{width:min(78vw,340px);height:220px;border-radius:20px;position:relative;overflow:hidden;flex:none;color:#fff;display:flex;align-items:flex-end;padding:1rem;font-weight:800;box-shadow:0 10px 24px #0002}
+.ph svg{position:absolute;inset:0;width:100%;height:100%}
+.ph b{position:relative;background:#0006;padding:.2rem .7rem;border-radius:99px;font-size:.9rem}
+.grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:1.4rem;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:var(--a);box-shadow:0 14px 30px #6c2bff22}
+.ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:1.6rem;margin-bottom:.8rem;background:var(--g);color:#fff}
+.card:nth-child(3n+2) .ico{background:var(--g2)}
+.card:nth-child(3n) .ico{background:linear-gradient(120deg,#00c2ff,#00e0a4)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;text-align:center}
+.stats div{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:1.2rem}
+.stats strong{display:block;font-size:2.2rem;font-weight:900;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vm{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.vm .card{color:#fff;border:0}
+.vm .card p,.vm .card h3{color:#fff}
+.vm .card:nth-child(1){background:linear-gradient(135deg,#6c2bff,#00c2ff)}
+.vm .card:nth-child(2){background:linear-gradient(135deg,#ff3d9a,#ffb800)}
+.price{text-align:center;position:relative}
+.price .amt{font-size:2rem;font-weight:900;color:var(--a)}
+.price ul{list-style:none;padding:0;margin:1rem 0;text-align:left}
+.price li{padding:.35rem 0;border-bottom:1px dashed var(--line);color:var(--mut)}
+.price li::before{content:"✔ ";color:#00b37e}
+.price.hot{border-color:var(--c);transform:scale(1.03)}
+.tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--g2);color:#1b1740;font-weight:800;font-size:.75rem;padding:.2rem .8rem;border-radius:99px}
+.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.logos div{height:90px;border-radius:16px;display:grid;place-items:center;font-weight:800;color:#fff;text-align:center;padding:.5rem}
+form{display:grid;gap:.9rem;max-width:560px}
+input,select,textarea{width:100%;padding:.85rem 1rem;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--a)}
+.ok{display:none;background:#00b37e;color:#fff;padding:1rem;border-radius:14px;font-weight:700}
+.two{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
+.note{font-size:.85rem;background:var(--soft);padding:.6rem 1rem;border-radius:12px}
+.slot{width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:1rem;text-align:center;font-size:.85rem;padding:.5rem}
+.slot img{width:100%;height:100%;object-fit:cover;display:block;margin:-.5rem}
+.video{aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--g);display:grid;place-items:center;color:#fff;text-align:center;font-weight:700;box-shadow:0 12px 30px #6c2bff33;max-width:900px}
+.video iframe,.video video{width:100%;height:100%;border:0;background:#000}
+.team{text-align:center}
+.team .slot{width:160px;aspect-ratio:1/1;border-radius:50%;margin:0 auto 1rem;font-size:3rem;border:4px solid var(--line)}
+.team .slot img{margin:0}
+.team .role{display:inline-block;background:var(--g2);color:#1b1740;font-weight:800;font-size:.8rem;padding:.2rem .8rem;border-radius:99px;margin-bottom:.7rem}
+footer{background:#1b1740;color:#cfc9ff;text-align:center;padding:2rem 1rem;margin-top:2rem}
+footer b{color:#fff}
+.wa-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;border:0;background:#25d366;color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 8px 24px #25d36699;animation:wapulse 2s infinite}
+.wa-btn svg{width:34px;height:34px;fill:#fff}
+@keyframes wapulse{0%{box-shadow:0 0 0 0 #25d366aa}70%{box-shadow:0 0 0 18px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
+.wa-box{position:fixed;right:16px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:40;width:min(320px,calc(100vw - 32px));background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 16px 40px #0004;display:none;border:2px solid var(--line)}
+.wa-box.open{display:block;animation:in .3s}
+.wa-head{background:#075e54;color:#fff;padding:.9rem 1rem;display:flex;justify-content:space-between;align-items:center;font-weight:800}
+.wa-head small{display:block;font-weight:400;opacity:.85}
+.wa-head button{background:none;border:0;color:#fff;font-size:1.3rem;cursor:pointer}
+.wa-body{padding:1rem;background:#ece5dd}
+.wa-msg{background:#fff;color:#1b1740;padding:.7rem .9rem;border-radius:0 14px 14px 14px;font-size:.92rem;margin-bottom:.8rem}
+.wa-box textarea{background:#fff;color:#1b1740;border-color:#d9d2c7}
+.wa-send{display:block;text-align:center;background:#25d366;color:#fff;font-weight:800;text-decoration:none;padding:.8rem;border-radius:99px;margin-top:.6rem}
+</style>
+</head>
+<body>
+<header>
+     <a class="logo" href="#home"><img src="images/logo.png" alt="Fazag Techs" style="height:42px;display:block"></a>
+  <button id="menu" aria-label="Menu">☰</button>
+  <nav id="nav">
+    <a href="#home">Home</a><a href="#about">About Us</a><a href="#products">Products &amp; Services</a><a href="#pricing">Pricing</a><a href="#clients">Our Clients</a><a href="#team">Our Team</a><a href="#demo">Demo</a><a href="#contact">Contact Us</a>
+  </nav>
+</header>
+<main>
+
+<section class="page" id="p-home">
+  <div class="hero"><div class="wrap">
+    <h1>Technology that makes your business <span style="background:var(--g2);-webkit-background-clip:text;background-clip:text;color:transparent">shine brighter</span></h1>
+    <p>Fazag Techs Ltd builds smart, fast and reliable software, from accounting and finance systems to hospital and business management platforms.</p>
+    <a class="btn" href="#demo">Book a Free Demo</a><a class="btn alt" href="#products">Explore Products</a>
+  </div></div>
+  <div class="slider" aria-label="Our offices"><div class="track" id="track"></div></div>
+  <div class="wrap">
+    <div class="stats">
+      <div><strong>50+</strong>Projects Delivered</div><div><strong>48+</strong>Happy Clients</div><div><strong>24/7</strong>Support</div><div><strong>100%</strong>Mobile Ready</div>
+    </div>
+    <h2 style="margin-top:2.5rem">Why <span class="grad">Fazag Techs?</span></h2>
+    <div class="grid">
+      <div class="card"><div class="ico">⚡</div><h3>Fast &amp; Modern</h3><p>Progressive web apps that load quickly and work on any phone, tablet or computer.</p></div>
+      <div class="card"><div class="ico">🔒</div><h3>Secure</h3><p>Role-based access and careful data handling to keep your records safe.</p></div>
+      <div class="card"><div class="ico">🤝</div><h3>Real Support</h3><p>Training, setup and responsive help from a team that knows your business.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="p-about">
+  <div class="hero"><div class="wrap"><h1>About Fazag Techs Ltd</h1><p>Software built with purpose, for businesses that want to grow.</p></div></div>
+  <div class="wrap">
+    <div class="two">
+      <div><h2>Company <span class="grad">Profile</span></h2>
+        <p>Fazag Techs Ltd is a technology company that designs, builds and supports business software for organizations of different sizes and sectors. We turn day-to-day operations such as accounting, payroll, human resources, projects, patient records and customer portals into simple, connected digital systems.</p>
+        <p>Our solutions are built as progressive web apps, so they run in any browser, can be installed on a phone like a native app, and stay usable on modest internet connections.</p>
+        <p>We work closely with each client: understanding their processes first, then configuring, training and supporting their teams so the technology delivers real results.</p></div>
+      <div class="card"><h3>What we do</h3>
+        <p>✔ Business &amp; accounting software<br>✔ Hospital &amp; healthcare systems<br>✔ Portals, websites &amp; mobile apps<br>✔ Hosting, training &amp; support</p>
+        <h3>Our values</h3><p>Integrity · Innovation · Reliability · Customer focus · Excellence</p></div>
+    </div>
+    <div class="vm" style="margin-top:2rem">
+      <div class="card"><div class="ico" style="background:#fff3">🔭</div><h3>Our Vision</h3><p>To be a trusted technology partner, empowering organizations across Nigeria, Africa and beyond with smart digital solutions that simplify work and drive growth.</p></div>
+      <div class="card"><div class="ico" style="background:#fff3">🎯</div><h3>Our Mission</h3><p>To deliver a reliable, innovative, secure scalable technology solutions and affordable software and services, backed by dependable support, that help our clients operate efficiently and make better decisions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="p-products">
+  <div class="hero"><div class="wrap"><h1>Our Products &amp; Services</h1><p>Complete digital solutions under one roof.</p></div></div>
+  <div class="wrap"><div class="grid">
+    <div class="card"><div class="ico">📊</div><h3>Accounting &amp; Finance System</h3><p>Transactions, management accounts, budgets, reports and multi-department modules.</p></div>
+    <div class="card"><div class="ico">🏥</div><h3>Hospital Management System</h3><p>Patients, appointments, billing, pharmacy, laboratory and live updates across departments, Stores.</p></div>
+    <div class="card"><div class="ico">🏥</div><h3>Project Management System</h3><p>Projeect Registration, Budget, billing, Report, and inventory management.</p></div>
+    <div class="card"><div class="ico">👥</div><h3>HR &amp; Payroll</h3><p>Staff records, leave, attendance, payroll and payslips in one place.</p></div>
+    <div class="card"><div class="ico">🌐</div><h3>Portals &amp; Websites</h3><p>Client, member and company portals plus dynamic, mobile-friendly websites.</p></div>
+    <div class="card"><div class="ico">📱</div><h3>Custom Web &amp; Mobile Apps</h3><p>Tailor-made progressive web apps built around your exact workflow.</p></div>
+    <div class="card"><div class="ico">🛠️</div><h3>Hosting, Training &amp; Support</h3><p>Deployment, staff training, maintenance and ongoing technical help.</p></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-pricing">
+  <div class="hero"><div class="wrap"><h1>Simple, Affordable and Flexible Pricing</h1><p>Choose a plan that fits your needs for your organizastion.</p></div></div>
+  <div class="wrap"><div class="grid">
+    <div class="card price"><div class="slot" data-src="images/starter.jpg" data-alt="Starter plan">📷 Starter plan photo<br>(images/starter.jpg)</div><h3>Starter</h3><div class="amt">₦ 500,000</div><p>One-Off Payment for the software and yearly payment of #100,000 for your database hosting</p><ul><li>1 module</li><li>Many users</li><li>Directors or Managers view</li><li>Email support</li></ul><a class="btn" href="#contact">Get Quote</a></div>
+    <div class="card price hot"><span class="tag">MOST POPULAR</span><div class="slot" data-src="images/business.jpg" data-alt="Business plan">📷 Business plan photo<br>(images/business.jpg)</div><h3>Business</h3><div class="amt">₦ 1000,000</div><p>One-Off Payment for the software and yearly payment of #100,000 for your database hosting</p><ul><li>Up to 3 modules plus directors View Module</li><li>Many users</li><li>Training included</li><li> 24/7 Priority support</li></ul><a class="btn" href="#contact">Get Quote</a></div>
+    <div class="card price"><div class="slot" data-src="images/enterprise.jpg" data-alt="Enterprise plan">📷 Enterprise plan photo<br>(images/enterprise.jpg)</div><h3>Enterprise</h3><div class="amt">Custom</div><p>tailored to your organization's Operational needs</p><ul><li>All modules</li><li>Unlimited users</li><li>Custom features</li><li>24/7 support</li></ul><a class="btn" href="#contact">Talk to Us</a></div>
+  </div>
+  <p class="note" style="margin-top:1.5rem">Prices are fair compare to the benefits you will get. Sacrifice now and thank us later</p></div>
+</section>
+
+<section class="page" id="p-clients">
+  <div class="hero"><div class="wrap"><h1>Our Clients</h1><p>Organizations that trust Fazag Techs.</p><p>We Aspire to add you to the list of our happy clients.</p></div></div>
+  <div class="wrap">
+    <div class="logos" id="logos"></div>
+    <p class="note" style="margin-top:1.5rem">Client names are placeholders. Replace them with your real clients and logos.</p>
+    <div class="grid" style="margin-top:1.5rem">
+      <div class="card"><p>“The system gave us clear reports in seconds instead of days.”</p><b>Finance Manager, Well-life Hospital Abuja</b></div>
+      <div class="card"><p>“Our staff learned it quickly and support has been excellent.”</p><b>Operations Director, Fazag School of Science & Technical Skills</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="p-team">
+  <div class="hero"><div class="wrap"><h1>Meet Our Top Team</h1><p>The people behind Fazag Techs.</p></div></div>
+  <div class="wrap"><div class="grid">
+      <div class="card team"><div class="slot" data-src="images/team1.jpg" data-alt="Team member 1">👤</div><h3>Full Name 1</h3><span class="role">Chief Executive Officer</span><p>Leads the company vision, strategy and client relationships.</p></div>
+      <div class="card team"><div class="slot" data-src="images/team2.jpg" data-alt="Team member 2">👤</div><h3>Full Name 2</h3><span class="role">Chief Technology Officer</span><p>Oversees software design, development and system security.</p></div>
+      <div class="card team"><div class="slot" data-src="images/team3.jpg" data-alt="Team member 3">👤</div><h3>Mr Zakariya Kilishi ACA, ACIT, MAC, Bsc</h3><span class="role">Head of Finance &amp; Operations</span><p>Manages finance, accounting solutions and day-to-day operations.</p></div>
+      <div class="card team"><div class="slot" data-src="images/team4.jpg" data-alt="Team member 4">👤</div><h3>Mrs Rofiat Mohammed</h3><span class="role">Head of Customer Support</span><p>Attends to Demo requests, onboarding and after-sales support for clients.</p></div>
+      </div>
+  <p class="note" style="margin-top:1.5rem">Replace the names, roles and descriptions with your real team, and add photos as images/team1.jpg to team4.jpg.</p></div>
+</section>
+
+<section class="page" id="p-demo">
+  <div class="hero"><div class="wrap"><h1>See It in Action</h1><p>Book a free, personalised demo of our software.</p></div></div>
+  <div class="wrap" style="padding-bottom:0"><h2>Watch our <span class="grad">Demo Video</span></h2>
+    <div class="video" id="demoVideo"><div>▶️<br>Demo video coming soon<br><small>Set DEMO_VIDEO in the script at the bottom of the file</small></div></div></div>
+  <div class="wrap two">
+    <div><h2>Request a <span class="grad">Demo</span></h2>
+      <form id="demoForm"><input required placeholder="Full name"><input required placeholder="Organization"><input required type="email" placeholder="Email"><input type="tel" placeholder="Phone"><select><option>Accounting &amp; Finance System</option><option>Hospital Management System</option><option>HR &amp; Payroll</option><option>Portal / Website</option><option>Custom App</option></select><input type="date"><button class="btn" style="border:0">Book My Demo</button><div class="ok">✔ Thank you! We will contact you to confirm your demo.</div></form></div>
+    <div class="card"><h3>What you will see</h3><p>✔ A live walkthrough of the modules<br>✔ How reports and dashboards work<br>✔ Setup, training and support options<br>✔ Answers to all your questions</p></div>
+  </div>
+</section>
+
+<section class="page" id="p-contact">
+  <div class="hero"><div class="wrap"><h1>Contact Us</h1><p>We would love to hear from you.</p></div></div>
+  <div class="wrap two">
+    <div class="card"><h3>Get in touch</h3><p>📍 Address: Opp No.15, A. Moshood Street, Dakwa, Bwari Area Council, Abuja, FCT.<br>📞 Phone: +2349067805096<br>✉️ Email: info@faazag.com.ng here<br>🕘 Mon – Fri, 8:00am – 5:00pm</p></div>
+    <form id="contactForm"><input required placeholder="Your name"><input required type="email" placeholder="Email"><input placeholder="Subject"><textarea required rows="5" placeholder="Your message"></textarea><button class="btn" style="border:0">Send Message</button><div class="ok">✔ Message sent. We will reply shortly.</div></form>
+  </div>
+</section>
+
+</main>
+<footer><b>Fazag Techs Ltd</b><br>Smart technology for growing businesses.<br>© 2026 Fazag Techs Ltd. All rights reserved.</footer>
+<script>
+var DEMO_VIDEO=""; // e.g. "video/demo.mp4" or a YouTube link like "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+var pages=["home","about","products","pricing","clients","team","demo","contact"];
+function route(){var h=(location.hash||"#home").slice(1);if(pages.indexOf(h)<0)h="home";
+document.querySelectorAll("section.page").forEach(function(s){s.classList.toggle("on",s.id==="p-"+h)});
+document.querySelectorAll("nav a").forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+h)});
+document.getElementById("nav").classList.remove("open");window.scrollTo(0,0)}
+addEventListener("hashchange",route);route();
+document.getElementById("menu").onclick=function(){document.getElementById("nav").classList.toggle("open")};
+var offices=["images/office1.jpg","images/office2.jpg","images/office3.jpg","images/office4.jpg","images/office5.jpg","images/office6.jpg"];
+function slide(o){return '<div class="ph"><img src="'+o+'" alt="Fazag Techs office" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>'}
+var s="";offices.concat(offices).forEach(function(o){s+=slide(o)});document.getElementById("track").innerHTML=s;
+var cl=["Client One","Client Two","Client Three","Client Four","Client Five","Client Six","Client Seven","Client Eight"],cs=["#6c2bff","#ff3d9a","#00a6d6","#ff9d00","#00b37e","#8a2be2","#e8338a","#0077ff"],l="";
+cl.forEach(function(c,i){l+='<div style="background:'+cs[i]+'">'+c+'</div>'});document.getElementById("logos").innerHTML=l;
+["demoForm","contactForm"].forEach(function(id){document.getElementById(id).addEventListener("submit",function(e){e.preventDefault();this.querySelector(".ok").style.display="block";this.reset()})});
+(function(){var v=DEMO_VIDEO,b=document.getElementById("demoVideo");if(!v)return;var y=v.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);b.innerHTML=y?'<iframe src="https://www.youtube.com/embed/'+y[1]+'" allowfullscreen></iframe>':'<video controls playsinline preload="metadata" src="'+v+'"></video>'})();
+document.querySelectorAll(".slot[data-src]").forEach(function(e){var i=new Image();i.onload=function(){e.innerHTML="";e.appendChild(i)};i.alt=e.getAttribute("data-alt")||"";i.src=e.getAttribute("data-src")});
+</script>
+<button class="wa-btn" id="waBtn" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.4 8.6 3.4 15.5c0 2.3.6 4.4 1.7 6.3L3 29l7.4-2c1.8 1 3.8 1.5 5.6 1.5 6.9 0 12.6-5.6 12.6-12.5S22.9 3 16 3zm0 22.9c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.4 1.2 1.2-4.3-.3-.4a10.3 10.3 0 0 1-1.6-5.5C5.5 9.8 10.2 5.2 16 5.2s10.5 4.6 10.5 10.3S21.8 25.9 16 25.9zm5.8-7.7c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.5 8.5 0 0 1-4.2-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.9 1.2 3.4 1.4 3.6 2.4 3.7 5.9 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.6s.3-1.4.2-1.6-.3-.3-.6-.4z"/></svg></button>
+<div class="wa-box" id="waBox"><div class="wa-head"><div>Fazag Techs Ltd<small>Typically replies within minutes</small></div><button id="waClose" aria-label="Close">✕</button></div>
+<div class="wa-body"><div class="wa-msg">👋 Hello! How can we help you today? Type your message and continue on WhatsApp.</div><textarea id="waText" rows="3" placeholder="Type your message...">Hello Fazag Techs, I would like to make an enquiry.</textarea><a class="wa-send" id="waSend" href="#" target="_blank" rel="noopener">Start WhatsApp Chat</a></div></div>
+<script>
+var WA_NUMBER="2349067805096"; // international format, digits only, no + sign
+(function(){var b=document.getElementById("waBtn"),x=document.getElementById("waBox"),t=document.getElementById("waText"),s=document.getElementById("waSend");
+function link(){s.href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(t.value)}
+b.onclick=function(){x.classList.toggle("open");link()};
+document.getElementById("waClose").onclick=function(){x.classList.remove("open")};
+t.oninput=link;link()})();
+</script>
+</body>
+</html>
