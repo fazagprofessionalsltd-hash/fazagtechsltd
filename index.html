@@ -228,7 +228,7 @@ document.getElementById("nav").classList.remove("open");window.scrollTo(0,0)}
 addEventListener("hashchange",route);route();
 document.getElementById("menu").onclick=function(){document.getElementById("nav").classList.toggle("open")};
 var offices=["images/office1.jpg","images/office2.jpg","images/office3.jpg","images/office4.jpg","images/office5.jpg","images/office6.jpg"];
-function slide(o){return '<div class="ph"><img src="'+o+'" alt="Fazag Techs office" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>'}
+function slide(o){return '<div class="ph"><img src="'+o+'" alt="Fazag Techs office" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>'}
 var s="";offices.concat(offices).forEach(function(o){s+=slide(o)});document.getElementById("track").innerHTML=s;
 var cl=["Client One","Client Two","Client Three","Client Four","Client Five","Client Six","Client Seven","Client Eight"],cs=["#6c2bff","#ff3d9a","#00a6d6","#ff9d00","#00b37e","#8a2be2","#e8338a","#0077ff"],l="";
 cl.forEach(function(c,i){l+='<div style="background:'+cs[i]+'">'+c+'</div>'});document.getElementById("logos").innerHTML=l;
